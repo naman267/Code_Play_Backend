@@ -19,7 +19,7 @@ function initroutes(app) {
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
   
-  app.post('/api/execute', (req, res) => {
+  app.post('/api/execute',cors(), (req, res) => {
     console.log("api----execute")
     const url = 'https://api.jdoodle.com/v1/execute'
     
