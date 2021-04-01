@@ -2,7 +2,7 @@ const express = require('express')
 const axios = require('axios')
 const mongoose = require('mongoose')
 const initroutes = require('../routes/route')
-
+const cors=require('cors')
 const port = process.env.PORT || 3080
 const app = express()
 
@@ -12,6 +12,7 @@ app.use(
     extended: true
   })
 )
+app.use(cors())
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
