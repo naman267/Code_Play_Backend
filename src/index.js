@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   )*/
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+  
   //res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
 
   if (req.method === 'OPTIONS') {
