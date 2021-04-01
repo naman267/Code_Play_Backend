@@ -17,10 +17,10 @@ const cors = require('cors');
 
 var corsOptions = 
 {
-  "origin": "*",
+  "origin": "https://codeplaynr.netlify.app",
   "allowedHeaders":['Origin', 'X-Requested-With', 'Content-Type', 'Accept','Authorization'],
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
+  "preflightContinue": true,
   "optionsSuccessStatus": 204
 }
 app.use(cors(corsOptions))
