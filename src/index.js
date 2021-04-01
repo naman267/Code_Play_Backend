@@ -51,7 +51,19 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/execute', (req, res) => {
+  console.log("api----execute")
   const url = 'https://api.jdoodle.com/v1/execute'
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type'
+  )
+  res.header('Cross-Origin-Resource-Policy', 'cross-origin')
+
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+    return res.status(200).json({})
+  }
  /* let program=JSON.parse(req.query.program)
   console.log(JSON.parse(req.query.program).script)*/
   //00000000000return res.json({message:"message"})
