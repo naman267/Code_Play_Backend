@@ -17,6 +17,15 @@ function initroutes(app) {
   app.post('/upvote/:id', authMiddleware, post().upvotee)
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
+  app.get('/compiler',(req,res)=>{
+    axios.post('/api/execute',req.body,{
+      headers:{ 'content-type': 'application/json'}
+    }).then(result=>{
+      console.log(result)
+    }).catch(e=>{
+      console.log('compiler-',e)
+    })
+  })
   app.post('/api/execute', (req, res) => {
     console.log("api----execute")
     const url = 'https://api.jdoodle.com/v1/execute'
