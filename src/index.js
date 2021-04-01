@@ -50,14 +50,14 @@ app.get('/', (req, res) => {
   res.send('App works!!!')
 })
 
-app.get('/api/execute', (req, res) => {
+app.post('/api/execute', (req, res) => {
   const url = 'https://api.jdoodle.com/v1/execute'
-  let program=JSON.parse(req.query.program)
-  console.log(JSON.parse(req.query.program).script)
+ /* let program=JSON.parse(req.query.program)
+  console.log(JSON.parse(req.query.program).script)*/
   //00000000000return res.json({message:"message"})
   try {
     axios
-      .post(url, program, {
+      .post(url, req.body, {
         headers: {
           'content-type': 'application/json'
         }
