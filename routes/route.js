@@ -4,7 +4,7 @@ const user = require('../app/controllers/user/user')
 const auth = require('../app/controllers/auth/auth')
 const authMiddleware = require('../app/controllers/middleware/auth')
 const axios=require('axios')
-
+const cors=require('cors')
 const upload = multer()
 
 function initroutes(app) {
@@ -17,7 +17,7 @@ function initroutes(app) {
   app.post('/upvote/:id', authMiddleware, post().upvotee)
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
-  app.post('/compiler',(req,res)=>{
+  app.post('/compiler',cors(),(req,res)=>{
     console.log("reqbody--",req.body)
     axios.post('/api/execute',req.body,{
       headers:{ 'content-type': 'application/json'}
