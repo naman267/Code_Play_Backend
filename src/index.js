@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   )*/
   res.header("Access-Control-Allow-Origin", 'https://codeplaynr.netlify.app');
-  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   
   //res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
 
