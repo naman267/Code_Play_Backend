@@ -8,7 +8,7 @@ const cors=require('cors')
 const upload = multer()
 const request=require('request')
 function initroutes(app) {
-  app.options('*', cors()) 
+  
   app.post('/signup',upload.none(), auth().createuser)
   app.post('/login', upload.none(), auth().login)
   app.post('/logout', authMiddleware, auth().logout)
