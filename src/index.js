@@ -65,6 +65,8 @@ app.post('/api/execute', (req, res) => {
  /* let program=JSON.parse(req.query.program)
   console.log(JSON.parse(req.query.program).script)*/
   //00000000000return res.json({message:"message"})
+  console.log(req.get('origin'))
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     axios
       .post(url, req.body, {
