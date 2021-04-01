@@ -17,7 +17,7 @@ function initroutes(app) {
   app.post('/upvote/:id', authMiddleware, post().upvotee)
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
-  app.get('/compiler',(req,res)=>{
+  app.post('/compiler',(req,res)=>{
     axios.post('/api/execute',req.body,{
       headers:{ 'content-type': 'application/json'}
     }).then(result=>{
