@@ -2,7 +2,7 @@ const express = require('express')
 const axios = require('axios')
 const mongoose = require('mongoose')
 const initroutes = require('../routes/route')
-const cors=require('cors')
+
 const port = process.env.PORT || 3080
 const app = express()
 
@@ -12,8 +12,14 @@ app.use(
     extended: true
   })
 )
-app.use(cors())
 
+const cors = require('cors');
+const corsOptions ={
+    origin:'https://codeplaynr.netlify.app', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 app.use((req, res, next) => {
   console.log('CORS middleware')
   res.setHeader("Access-Control-Allow-Origin", "*");
