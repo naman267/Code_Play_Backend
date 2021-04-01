@@ -14,7 +14,11 @@ app.use(
 )
 
 const cors = require('cors');
-app.use(cors())
+
+var corsOptions = {
+  origin: 'https://codeplaynr.netlify.app',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 app.use((req, res, next) => {
   console.log('CORS middleware')
   /*res.setHeader("Access-Control-Allow-Origin", "*");
@@ -56,7 +60,7 @@ app.get('/', (req, res) => {
   res.send('App works!!!')
 })
 
-app.post('/api/execute', (req, res) => {
+app.post('/api/execute',cors(corsOptions), (req, res) => {
   console.log("api----execute")
   const url = 'https://api.jdoodle.com/v1/execute'
   
