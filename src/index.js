@@ -19,14 +19,14 @@ var corsOptions = {
   origin: 'https://codeplaynr.netlify.app',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
   console.log('CORS middleware')
   /*res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   )*/
- /* res.setHeader("Access-Control-Allow-Origin", 'https://codeplaynr.netlify.app');
+ res.setHeader("Access-Control-Allow-Origin", 'https://codeplaynr.netlify.app');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   console.log('res-',res)
   //res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
@@ -38,7 +38,7 @@ var corsOptions = {
   // console.log('req:::', req.headers)
   // console.log('res:::', res)
   next()
-})*/
+})
 //--------------------MONGOOSE-------------------
 mongoose.connect(
   'mongodb+srv://pizza:pizza@cluster0.jg2br.mongodb.net/codeplay',
@@ -60,12 +60,12 @@ app.get('/', (req, res) => {
   res.send('App works!!!')
 })
 
-app.post('/api/execute', (req, res) => {
+/*app.post('/api/execute', (req, res) => {
   console.log("api----execute")
   const url = 'https://api.jdoodle.com/v1/execute'
   
  /* let program=JSON.parse(req.query.program)
-  console.log(JSON.parse(req.query.program).script)*/
+  console.log(JSON.parse(req.query.program).script)
   //00000000000return res.json({message:"message"})
   console.log(req.get('origin'))
   res.setHeader("Access-Control-Allow-Origin", req.get('origin'));
@@ -89,7 +89,7 @@ app.post('/api/execute', (req, res) => {
   } catch (e) {
     res.status(404).send(e)
   }
-})
+})*/
 
 initroutes(app)
 
