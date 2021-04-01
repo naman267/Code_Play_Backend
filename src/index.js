@@ -81,7 +81,7 @@ app.post('/api/execute', (req, res) => {
       })
       .catch((e) => {
         console.log("api-execute-",e)
-        throw new Error(e)
+        
       })
     // res.set('Content-Type', 'image/png')
   } catch (e) {
