@@ -15,8 +15,7 @@ app.use(
 
 const cors = require('cors');
 const corsOptions ={
-    origin:'https://codeplaynr.netlify.app', 
-    credentials:true,            //access-control-allow-credentials:true
+    origin:'https://codeplaynr.netlify.app',        //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
@@ -66,7 +65,7 @@ app.post('/api/execute', (req, res) => {
   console.log(JSON.parse(req.query.program).script)*/
   //00000000000return res.json({message:"message"})
   console.log(req.get('origin'))
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", req.get('origin'));
   try {
     axios
       .post(url, req.body, {
