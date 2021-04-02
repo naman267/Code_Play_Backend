@@ -14,34 +14,32 @@ app.use(
 )
 
 const cors = require('cors');
+app.use(cors())
 
-var corsOptions = 
-{
-  origin: "*",
-  allowedHeaders:['Origin', 'X-Requested-With', 'Content-Type', 'Accept','Authorization'],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: true,
-  optionsSuccessStatus: 204
-}
-
-app.use(cors(corsOptions))
 app.use((req, res, next) => {
-  console.log('CORS middleware')
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
+  if (req.method === 'OPTIONS') {
+  res.setHeader("Access-Control-Allow-Origin", 'https://localhost:3000');
+  res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   )
-  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+    
+    return res.status(200).json({})
+  }
+  console.log('CORS middleware')
+  res.header("Access-Control-Allow-Origin", "https://localhost:3000");
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  )
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
  //res.header("Access-Control-Allow-Origin", '*');
   //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
   console.log('res-',res)
-  //res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
+  res.header('Cross-Origin-Resource-Policy', 'cross-origin')
 
-  /*if (req.method === 'OPTIONS') {
-    
-    return res.status(200).json({})
-  }*/
+ 
   // console.log('req:::', req.headers)
   // console.log('res:::', res)
   next()
