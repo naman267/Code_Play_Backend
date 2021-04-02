@@ -7,7 +7,7 @@ const axios=require('axios')
 const cors=require('cors')
 const upload = multer()
 const request=require('request')
-const mid=(req,res,next)=>{
+/*const mid=(req,res,next)=>{
   if (req.method === 'OPTIONS') {
     res.header("Access-Control-Allow-Origin", 'http://192.168.1.7:5000');
     res.header(
@@ -34,7 +34,7 @@ const mid=(req,res,next)=>{
     // console.log('req:::', req.headers)
     // console.log('res:::', res)
     next()
-}
+}*/
 function initroutes(app) {
  
   
@@ -49,9 +49,10 @@ function initroutes(app) {
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
   
-  app.post('/api/execute',mid,cors(), (req, res) => {
+  app.post('/api/execute',upload.none(), (req, res) => {
     console.log("api----execute")
     const url = 'https://api.jdoodle.com/v1/execute'
+    console.log('req body-',req.body)
     
     console.log(req.get('origin'))
     //res.setHeader("Access-Control-Allow-Origin", req.get('origin'));
@@ -68,7 +69,7 @@ function initroutes(app) {
           return res.send(response.data)
         })
         .catch((e) => {
-          console.log("api-execute-",e)
+          //console.log("api-execute-",e)
           
         })
       // res.set('Content-Type', 'image/png')
