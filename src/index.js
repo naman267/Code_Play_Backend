@@ -17,11 +17,11 @@ const cors = require('cors');
 
 var corsOptions = 
 {
-  "origin": "*",
-  "allowedHeaders":['Origin', 'X-Requested-With', 'Content-Type', 'Accept','Authorization'],
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": true,
-  "optionsSuccessStatus": 204
+  origin: "*",
+  allowedHeaders:['Origin', 'X-Requested-With', 'Content-Type', 'Accept','Authorization'],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: true,
+  optionsSuccessStatus: 204
 }
 app.options('/api/execute',(req,res)=>{
   res.header ('Access-Control-Allow-Origin', 'http://localhost:3000')
