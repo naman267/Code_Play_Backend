@@ -23,27 +23,35 @@ var corsOptions =
   "preflightContinue": true,
   "optionsSuccessStatus": 204
 }
+app.options('*',(req,res)=>{
+  res.header ('Access-Control-Allow-Origin', '*')
+
+  res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
+  //# try: 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
+  res.header ('Access-Control-Allow-Headers', 'Content-Type')
+})
 app.use(cors(corsOptions))
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
   console.log('CORS middleware')
-  /*res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  )*/
- /*res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
+  )
+  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+ //res.header("Access-Control-Allow-Origin", '*');
+  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
   console.log('res-',res)
   //res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
 
-  if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+  /*if (req.method === 'OPTIONS') {
+    
     return res.status(200).json({})
-  }
+  }*/
   // console.log('req:::', req.headers)
   // console.log('res:::', res)
   next()
-})*/
+})
 //--------------------MONGOOSE-------------------
 mongoose.connect(
   'mongodb+srv://pizza:pizza@cluster0.jg2br.mongodb.net/codeplay',
