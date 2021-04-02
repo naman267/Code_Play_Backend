@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 })
 //--------------------MONGOOSE-------------------
 mongoose.connect(
-  'mongodb+srv://pizza:pizza@cluster0.jg2br.mongodb.net/codeplay',
+  process.env.MONGO_URL,
   {
     useNewUrlParser: true,
     useCreateIndex: true,
