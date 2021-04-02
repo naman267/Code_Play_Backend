@@ -8,6 +8,13 @@ const cors=require('cors')
 const upload = multer()
 const request=require('request')
 function initroutes(app) {
+  app.options('/api/execute',(req,res)=>{
+    res.header ('Access-Control-Allow-Origin', 'http://localhost:3000')
+  
+    res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
+    //# try: 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
+    res.header ('Access-Control-Allow-Headers', 'Content-Type')
+  })
   
   app.post('/signup',upload.none(), auth().createuser)
   app.post('/login', upload.none(), auth().login)

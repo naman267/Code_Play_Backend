@@ -23,13 +23,7 @@ var corsOptions =
   preflightContinue: true,
   optionsSuccessStatus: 204
 }
-app.options('/api/execute',(req,res)=>{
-  res.header ('Access-Control-Allow-Origin', 'http://localhost:3000')
 
-  res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
-  //# try: 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
-  res.header ('Access-Control-Allow-Headers', 'Content-Type')
-})
 app.use(cors(corsOptions))
 app.use((req, res, next) => {
   console.log('CORS middleware')
