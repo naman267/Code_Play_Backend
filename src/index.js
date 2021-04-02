@@ -18,7 +18,7 @@ app.use(cors())
 
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
-  res.setHeader("Access-Control-Allow-Origin", 'http://localhost:3000');
+  res.setHeader("Access-Control-Allow-Origin", 'http://192.168.1.7:5000');
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
     return res.status(200).json({})
   }
   console.log('CORS middleware')
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "http://192.168.1.7:5000");
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
