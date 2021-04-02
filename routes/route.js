@@ -7,8 +7,37 @@ const axios=require('axios')
 const cors=require('cors')
 const upload = multer()
 const request=require('request')
+const mid=(req,res,next)=>{
+  if (req.method === 'OPTIONS') {
+    res.header("Access-Control-Allow-Origin", 'http://192.168.1.7:5000');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    )
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+      
+      return res.status(200).json({})
+    }
+    console.log('CORS middleware')
+    res.header("Access-Control-Allow-Origin", "http://192.168.1.7:5000");
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    )
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+   //res.header("Access-Control-Allow-Origin", '*');
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
+    console.log('res-',res)
+    res.header('Cross-Origin-Resource-Policy', 'cross-origin')
+  
+   
+    // console.log('req:::', req.headers)
+    // console.log('res:::', res)
+    next()
+}
 function initroutes(app) {
  
+  
   
   app.post('/signup',upload.none(), auth().createuser)
   app.post('/login', upload.none(), auth().login)
@@ -20,7 +49,7 @@ function initroutes(app) {
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
   
-  app.post('/api/execute',cors(), (req, res) => {
+  app.post('/api/execute',mid,cors(), (req, res) => {
     console.log("api----execute")
     const url = 'https://api.jdoodle.com/v1/execute'
     
