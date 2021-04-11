@@ -48,7 +48,50 @@ function initroutes(app) {
   app.post('/upvote/:id', authMiddleware, post().upvotee)
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
-  
+  app.get('/searching/problems',async (req,res)=>{
+
+    const url="https://codeforces.com/api/problemset.problems?tags=binary search"
+     
+    try {
+      const ress=await axios.get(url);
+      const data=ress.data.result.problems;
+      console.log(data)
+      var finaldata=data.filter(dat=>{
+        return ((dat.rating>=1000) && (dat.rating<=1400)) 
+      })
+      finaldata=finaldata.slice(0,10);
+      console.log(finaldata)
+       res.json(finaldata);
+
+
+  }
+  catch(e) {
+    console.log("erroro--",e);
+
+  }
+})
+app.get('/dfs/problems',async (req,res)=>{
+
+  const url="https://codeforces.com/api/problemset.problems?tags=shortest paths&dfs"
+   
+  try {
+    const ress=await axios.get(url);
+    const data=ress.data.result.problems;
+    console.log(data)
+    var finaldata=data.filter(dat=>{
+      return ((dat.rating>=1000) && (dat.rating<=1400)) 
+    })
+    finaldata=finaldata.slice(0,12);
+    console.log(finaldata)
+     res.json(finaldata);
+
+
+}
+catch(e) {
+  console.log("erroro--",e);
+
+}
+})
   app.post('/api/execute',upload.none(), (req, res) => {
     console.log("api----execute")
     const url = 'https://api.jdoodle.com/v1/execute'

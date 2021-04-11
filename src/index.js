@@ -17,7 +17,7 @@ const cors = require('cors');
 //app.use(cors())
 
 app.use((req, res, next) => {
-  console.log(req)
+  //console.log(req)
   
   console.log('CORS middleware')
   res.header("Access-Control-Allow-Origin", "*");
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
  //res.header("Access-Control-Allow-Origin", '*');
   //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
-  console.log('res-',res)
+  //console.log('res-',res)
   res.header('Cross-Origin-Resource-Policy', 'cross-origin')
   if (req.method === 'OPTIONS') {
  
