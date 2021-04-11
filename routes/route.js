@@ -50,7 +50,7 @@ function initroutes(app) {
   app.get('/getUser', authMiddleware,user().getUser)
   app.get('/searching/problems',async (req,res)=>{
 
-    const url="https://codeforces.com/api/problemset.problems?tags=binary search"
+    const url="https://codeforces.com/api/problemset.problems?tags=binary search&sortings"
      
     try {
       const ress=await axios.get(url);
