@@ -72,7 +72,7 @@ function initroutes(app) {
 })
 app.get('/dfs/problems',async (req,res)=>{
 
-  const url="https://codeforces.com/api/problemset.problems?tags=shortest paths&dfs"
+  const url="https://codeforces.com/api/problemset.problems?tags=dfs and similar"
    
   try {
     const ress=await axios.get(url);
