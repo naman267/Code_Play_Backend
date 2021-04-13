@@ -70,6 +70,28 @@ function initroutes(app) {
 
   }
 })
+app.get('/dp/problems',async (req,res)=>{
+
+  const url="https://codeforces.com/api/problemset.problems?tags=dp"
+   
+  try {
+    const ress=await axios.get(url);
+    const data=ress.data.result.problems;
+    console.log(data)
+    var finaldata=data.filter(dat=>{
+      return ((dat.rating>=1000) && (dat.rating<=1400)) 
+    })
+    finaldata=finaldata.slice(0,12);
+    console.log(finaldata)
+     res.json(finaldata);
+
+
+}
+catch(e) {
+  console.log("erroro--",e);
+
+}
+})
 app.get('/dfs/problems',async (req,res)=>{
 
   const url="https://codeforces.com/api/problemset.problems?tags=dfs and similar"
