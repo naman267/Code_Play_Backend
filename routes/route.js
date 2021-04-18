@@ -7,34 +7,25 @@ const axios=require('axios')
 const cors=require('cors')
 const upload = multer()
 const request=require('request')
-/*const mid=(req,res,next)=>{
-  if (req.method === 'OPTIONS') {
-    res.header("Access-Control-Allow-Origin", 'http://192.168.1.7:5000');
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    )
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
-      
-      return res.status(200).json({})
-    }
-    console.log('CORS middleware')
-    res.header("Access-Control-Allow-Origin", "http://192.168.1.7:5000");
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    )
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
-   //res.header("Access-Control-Allow-Origin", '*');
-    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
-    console.log('res-',res)
-    res.header('Cross-Origin-Resource-Policy', 'cross-origin')
-  
-   
-    // console.log('req:::', req.headers)
-    // console.log('res:::', res)
-    next()
-}*/
+const nodemailer = require('nodemailer');
+const { compareSync } = require('bcryptjs')
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'codeplay267@gmail.com',
+    pass: 'codeplay123@'
+  }
+});
+
+var mailOptions = {
+  from: 'codeplay267@gmail.com',
+  to: 'codeplay267@gmail.com',
+  subject: 'Feedback',
+  text: `hello i hope you are fine`
+};
+
+
 function initroutes(app) {
  
   
@@ -141,7 +132,32 @@ catch(e) {
     } catch (e) {
       res.status(404).send(e)
     }
+  }),
+  app.post('/send',(req,res)=>{
+    console.log(req.body)
+    mailOptions.text=`FEEDBACK From ${req.body.email}-${req.body.message}`
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        return res.json({message:"fail"})
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+    mailOptions.to=req.body.email;
+    mailOptions.subject='Thanks For Feedback'
+    mailOptions.text=`Thanks for Your feedback-${req.body.message} `
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        return res.json({message:"fail"})
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+    return res.json({message:"success"})
   })
+
 }
 
 module.exports = initroutes
