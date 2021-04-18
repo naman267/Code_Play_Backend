@@ -13,8 +13,8 @@ const { compareSync } = require('bcryptjs')
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'codeplay267@gmail.com',
-    pass: 'codeplay123@'
+    user: process.env.user,
+    pass: process.env.pass
   }
 });
 
