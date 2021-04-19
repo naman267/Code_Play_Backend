@@ -50,7 +50,7 @@ function initroutes(app) {
       var finaldata=data.filter(dat=>{
         return ((dat.rating>=1000) && (dat.rating<=1400)) 
       })
-      finaldata=finaldata.slice(0,10);
+      finaldata=finaldata.slice(0,30);
       console.log(finaldata)
        res.json(finaldata);
 
@@ -72,7 +72,7 @@ app.get('/dp/problems',async (req,res)=>{
     var finaldata=data.filter(dat=>{
       return ((dat.rating>=1000) && (dat.rating<=1400)) 
     })
-    finaldata=finaldata.slice(0,12);
+    finaldata=finaldata.slice(0,30);
     console.log(finaldata)
      res.json(finaldata);
 
@@ -94,7 +94,7 @@ app.get('/dfs/problems',async (req,res)=>{
     var finaldata=data.filter(dat=>{
       return ((dat.rating>=1000) && (dat.rating<=1400)) 
     })
-    finaldata=finaldata.slice(0,12);
+    finaldata=finaldata.slice(0,30);
     console.log(finaldata)
      res.json(finaldata);
 
