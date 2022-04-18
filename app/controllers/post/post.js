@@ -2,6 +2,7 @@ const Post = require('../../models/post')
 function post() {
   return {
     async upvotee(req, res) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       const postId = req.params.id
       const votedBy = req.user.email
       const post = await Post.findById(postId)
@@ -36,6 +37,7 @@ function post() {
 
     },*/
     async downvotee(req, res) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       const postId = req.params.id
       const votedBy = req.user.email
       const post = await Post.findById(postId)
@@ -68,6 +70,7 @@ function post() {
       res.json(post)
     },*/
     makepost(req, res) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       console.log('request accepted')
       const title = req.body.newPostTitle
       const body = req.body.newPostContent
@@ -96,10 +99,12 @@ function post() {
       res.json(newpost)
     },*/
     async getposts(req, res) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       const allpost = await Post.find({})
       res.json(allpost)
     },
     async getpostsTitle(req, res) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       const title = req.params.title
       const allpost = await Post.find({ title: title })
       console.log(allpost)

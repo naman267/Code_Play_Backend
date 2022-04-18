@@ -3,7 +3,7 @@ const jwt=require('jsonwebtoken')
 function user() {
   return {
     async getUser(req, res) {
-     
+      res.setHeader('Access-Control-Allow-Origin', '*');
         console.log(req.user.email)
        return res.json({user:req.user.email})
         /*console.log("GretUser")
