@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs')
 function authentication() {
   return {
     async createuser(req, res) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       const name = req.body.name
       const email = req.body.email
       let password = req.body.password
@@ -66,6 +67,7 @@ function authentication() {
         // /req.user.tokens=req.user.tokens.filter((token)=>{
         // return token.token!==req.token
         // })
+        res.setHeader('Access-Control-Allow-Origin', '*');
         req.user.tokens = []
         await req.user.save()
         console.log(req.user)

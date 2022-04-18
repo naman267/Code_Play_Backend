@@ -86,7 +86,6 @@ catch(e) {
 app.get('/dfs/problems',async (req,res)=>{
 
   const url="https://codeforces.com/api/problemset.problems?tags=dfs and similar"
-   
   try {
     const ress=await axios.get(url);
     const data=ress.data.result.problems;
@@ -106,6 +105,7 @@ catch(e) {
 }
 })
   app.post('/api/execute',upload.none(), (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     console.log("api----execute")
     const url = 'https://api.jdoodle.com/v1/execute'
     console.log('req body-',req.body)
@@ -134,6 +134,7 @@ catch(e) {
     }
   }),
   app.post('/send',(req,res)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
     console.log(req.body)
     mailOptions.text=`FEEDBACK From ${req.body.email}-${req.body.message}`
     transporter.sendMail(mailOptions, function(error, info){
