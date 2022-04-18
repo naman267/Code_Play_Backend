@@ -31,12 +31,9 @@ function authentication() {
       }
     },
     async login(req, res) {
+      res.setHeader('Access-Control-Allow-Origin', 'https://codeplaynr.netlify.app/');
       try {
-        //const logintoken=req.header('Authorization').replace('Bearer ','')
-        //console.log(logintoken)
-        //const decoded=jwt.verify(logintoken,"CODEPLAY")
-        //console.log(decoded)
-        //const user=await User.findOne({_id:decoded._id,'tokens.token':token})
+        
         console.log('req.body:::', req.body)
         const email = req.body.email
         const password = req.body.password
