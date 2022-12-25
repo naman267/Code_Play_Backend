@@ -10,7 +10,7 @@ const corsOptions = {
   origin: "https://codeplaynr.netlify.app"
 }
 app.use(cors(corsOptions))
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   //console.log(req)
   
   console.log('CORS middleware')
@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     return res.status(200).json({})
   }
 next()
-})
+})*/
 app.use(express.json())
 app.use(
   express.urlencoded({
