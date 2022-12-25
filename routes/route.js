@@ -12,6 +12,7 @@ const { compareSync } = require('bcryptjs')
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
+  secure:true,
   auth: {
     user: process.env.user,
     pass: process.env.pass
@@ -134,9 +135,11 @@ catch(e) {
     }
   }),
   app.post('/send',(req,res)=>{
+    console.log("Send message api")
     res.setHeader('Access-Control-Allow-Origin', '*');
     console.log(req.body)
     mailOptions.text=`FEEDBACK From ${req.body.email}-${req.body.message}`
+  try{
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error);
@@ -157,6 +160,12 @@ catch(e) {
       }
     });
     return res.json({message:"success"})
+  }catch(e)
+  {
+    console.log("error");
+    return res.json({message:"fail"})
+  }
+    
   })
 
 }

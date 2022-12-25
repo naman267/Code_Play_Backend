@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
 function authentication() {
   return {
     async createuser(req, res) {
-      res.setHeader('Access-Control-Allow-Origin', '*');
+      try{ res.setHeader('Access-Control-Allow-Origin', '*');
       const name = req.body.name
       const email = req.body.email
       let password = req.body.password
@@ -30,6 +30,12 @@ function authentication() {
       } else {
         res.json({ message: 'Email already registered' })
       }
+
+      }catch(e){
+        console.log(e)
+
+      }
+     
     },
     async login(req, res) {
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -46,6 +52,7 @@ function authentication() {
           const ismatch = await bcrypt.compare(password, user.password)
           if (!ismatch) {
             console.log('Invalid Credentials')
+            throw new Error("invalid email")
           } else {
             const logintoken = token().getToken(user._id)
             user.tokens = user.tokens.concat({ token: logintoken })
@@ -64,9 +71,7 @@ function authentication() {
     },
     async logout(req, res) {
       try {
-        // /req.user.tokens=req.user.tokens.filter((token)=>{
-        // return token.token!==req.token
-        // })
+        
         res.setHeader('Access-Control-Allow-Origin', '*');
         req.user.tokens = []
         await req.user.save()

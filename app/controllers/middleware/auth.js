@@ -8,7 +8,16 @@ const auth = async (req, res, next) => {
     console.log(req.header)
     const token = req.header('Authorization').replace('Bearer ', '')
     console.log('Got logout token--', token)
-    const decoded = jwt.verify(token, process.env.JWT_KEYWORD)
+    var Keyword;
+    if(process.env.JWT_KEYWORD)
+    {
+        Keyword = process.env.JWT_KEYWORD
+    }
+    else
+    {
+        Keyword ="CODEPLAY"
+    }
+    const decoded = jwt.verify(token,Keyword)
     const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
     console.log("user",user)
     if (!user) {

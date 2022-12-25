@@ -24,18 +24,7 @@ function post() {
       post.save()
       res.json(post)
     },
-    /*async upvotee(req, res) {
-      const postId = req.params.id
-
-      const post = await Post.findById(postId)
-      post.upvote = post.upvote + 1
-      post.totalvotes = post.totalvotes + 1
-
-      post.save()
-      console.log(post)
-      res.json(post)
-
-    },*/
+   
     async downvotee(req, res) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       const postId = req.params.id
@@ -58,17 +47,7 @@ function post() {
       post.save()
       res.json(post)
     },
-    /*async downvotee(req, res) {
-      const postId = req.params.id
-
-      const post = await Post.findById(postId)
-      post.downvote = post.downvote + 1
-      post.totalvotes = post.totalvotes + 1
-
-      post.save()
-      console.log(post)
-      res.json(post)
-    },*/
+   
     makepost(req, res) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       console.log('request accepted')
@@ -86,18 +65,7 @@ function post() {
       post.save()
       res.json(post)
     },
-    /*makepost(req, res) {
-      console.log(req.body)
-      const { newPostTitle, newPostContent } = req.body
-      const newpost = new Post({
-        title: newPostTitle,
-        body: newPostContent,
-        writtenBy: "rachit"
-      })
-      newpost.save()
-
-      res.json(newpost)
-    },*/
+    
     async getposts(req, res) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       const allpost = await Post.find({})

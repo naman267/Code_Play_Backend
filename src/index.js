@@ -26,9 +26,7 @@ app.use((req, res, next) => {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   )
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
- //res.header("Access-Control-Allow-Origin", '*');
-  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
-  //console.log('res-',res)
+
   res.header('Cross-Origin-Resource-Policy', 'cross-origin')
   if (req.method === 'OPTIONS') {
  
@@ -36,13 +34,19 @@ app.use((req, res, next) => {
     return res.status(200).json({})
   }
  
-  // console.log('req:::', req.headers)
-  // console.log('res:::', res)
+ 
   next()
 })
 //--------------------MONGOOSE-------------------
+console.log(process.env.MONGO_URL)
+var MongoUrl;
+if(process.env.MONGO_URL)
+MongoUrl=process.env.MONGO_URL
+else
+MongoUrl="mongodb+srv://pizza:pizza@cluster0.jg2br.mongodb.net/codeplay"
+
 mongoose.connect(
-  process.env.MONGO_URL,
+  MongoUrl,
   {
     useNewUrlParser: true,
     useCreateIndex: true,
