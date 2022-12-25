@@ -6,12 +6,27 @@ const initroutes = require('../routes/route')
 const port = process.env.PORT || 3080
 const app = express()
 const cors = require('cors');
-const whitelist = ["https://codeplaynr.netlify.app"]
 const corsOptions = {
   origin: "https://codeplaynr.netlify.app"
 }
 app.use(cors(corsOptions))
+app.use((req, res, next) => {
+  //console.log(req)
+  
+  console.log('CORS middleware')
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  )
+  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
 
+ // res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
+  if (req.method === 'OPTIONS') {
+    return res.status(200).json({})
+  }
+next()
+})
 app.use(express.json())
 app.use(
   express.urlencoded({
@@ -22,22 +37,7 @@ app.use(
 
 /*app.use(cors())
 
-app.use((req, res, next) => {
-  //console.log(req)
-  
-  console.log('CORS middleware')
-  res.setHeader("Access-Control-Allow-Origin", "https://codeplaynr.netlify.app");
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  )
-  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
 
- // res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
- /* if (req.method === 'OPTIONS') {
-    return res.status(200).json({})
-  }
-*/
  
   /*next()
 }) */
