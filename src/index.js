@@ -6,8 +6,11 @@ const initroutes = require('../routes/route')
 const port = process.env.PORT || 3080
 const app = express()
 const cors = require('cors');
-
-app.use((req, res, next) => {
+app.use(cors({
+  origin:"https://codeplaynr.netlify.app",
+  credentials:true
+}))
+/*app.use((req, res, next) => {
   //console.log(req)
   
   console.log('CORS middleware')
@@ -30,7 +33,7 @@ app.use((req, res, next) => {
   // console.log('req:::', req.headers)
   // console.log('res:::', res)
   next()
-})
+})*/
 app.use(express.json())
 app.use(
   express.urlencoded({
