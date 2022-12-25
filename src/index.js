@@ -27,10 +27,8 @@ app.use((req, res, next) => {
   )
   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
 
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
+ // res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
   if (req.method === 'OPTIONS') {
- 
-    
     return res.status(200).json({})
   }
  
