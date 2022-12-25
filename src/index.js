@@ -5,6 +5,12 @@ const initroutes = require('../routes/route')
 
 const port = process.env.PORT || 3080
 const app = express()
+const cors = require('cors');
+const whitelist = ["https://codeplaynr.netlify.app"]
+const corsOptions = {
+  origin: "https://codeplaynr.netlify.app"
+}
+app.use(cors(corsOptions))
 
 app.use(express.json())
 app.use(
@@ -13,7 +19,7 @@ app.use(
   })
 )
 
-const cors = require('cors');
+
 /*app.use(cors())
 
 app.use((req, res, next) => {
@@ -35,18 +41,7 @@ app.use((req, res, next) => {
  
   /*next()
 }) */
-const whitelist = ["https://codeplaynr.netlify.app"]
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error("Not allowed by CORS"))
-    }
-  },
-  credentials: true,
-}
-app.use(cors(corsOptions))
+
 
 //--------------------MONGOOSE-------------------
 console.log(process.env.MONGO_URL)
