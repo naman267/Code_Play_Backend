@@ -14,13 +14,13 @@ app.use(
 )
 
 const cors = require('cors');
-//app.use(cors())
+app.use(cors())
 
 app.use((req, res, next) => {
   //console.log(req)
   
   console.log('CORS middleware')
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "https://codeplaynr.netlify.app");
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
