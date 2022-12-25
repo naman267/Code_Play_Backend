@@ -39,7 +39,7 @@ function authentication() {
     },
     async login(req, res) {
       try {
-        
+        res.setHeader('Access-Control-Allow-Origin', '*');
         console.log('req.body:::', req.body)
         const email = req.body.email
         const password = req.body.password
