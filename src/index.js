@@ -6,27 +6,31 @@ const initroutes = require('../routes/route')
 const port = process.env.PORT || 3080
 const app = express()
 const cors = require('cors');
-const corsOptions = {
-  origin: "https://codeplaynr.netlify.app"
-}
-app.use(cors(corsOptions))
-/*app.use((req, res, next) => {
+
+app.use((req, res, next) => {
   //console.log(req)
   
   console.log('CORS middleware')
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   )
-  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
-
- // res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+ //res.header("Access-Control-Allow-Origin", '*');
+  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
+  //console.log('res-',res)
+  res.header('Cross-Origin-Resource-Policy', 'cross-origin')
   if (req.method === 'OPTIONS') {
+ 
+    
     return res.status(200).json({})
   }
-next()
-})*/
+ 
+  // console.log('req:::', req.headers)
+  // console.log('res:::', res)
+  next()
+})
 app.use(express.json())
 app.use(
   express.urlencoded({
