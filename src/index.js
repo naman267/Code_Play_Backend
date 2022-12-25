@@ -11,16 +11,16 @@ app.use((req, res, next) => {
   //console.log(req)
   
   console.log('CORS middleware')
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   )
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
  //res.header("Access-Control-Allow-Origin", '*');
   //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
   //console.log('res-',res)
-  res.header('Cross-Origin-Resource-Policy', 'cross-origin')
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
   if (req.method === 'OPTIONS') {
  
     
