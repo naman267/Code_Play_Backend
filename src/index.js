@@ -14,7 +14,7 @@ app.use(
 )
 
 const cors = require('cors');
-app.use(cors())
+//app.use(cors())
 
 app.use((req, res, next) => {
   //console.log(req)
@@ -28,10 +28,10 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
 
  // res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
-  if (req.method === 'OPTIONS') {
+ /* if (req.method === 'OPTIONS') {
     return res.status(200).json({})
   }
- 
+*/
  
   next()
 })
