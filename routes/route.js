@@ -40,6 +40,9 @@ function initroutes(app) {
   app.post('/upvote/:id', authMiddleware, post().upvotee)
   app.post('/downvote/:id', authMiddleware, post().downvotee)
   app.get('/getUser', authMiddleware,user().getUser)
+  app.get('/testing',async(req,res)=>{
+    res.send("hello and welcome")
+  })
   app.get('/searching/problems',async (req,res)=>{
 
     const url="https://codeforces.com/api/problemset.problems?tags=binary search&sortings"
