@@ -11,15 +11,12 @@ const cors = require('cors');
 }))*/
 app.use((req, res, next) => {
   //console.log(req)
-  
-  console.log('CORS middleware')
-  res.setHeader("Access-Control-Allow-Origin", "https://codeplaynr.netlify.app");
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  )
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", 'GET, PUT, POST, PATCH, DELETE')
+  next();
   console.log(req)
-  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+  /*res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
  //res.header("Access-Control-Allow-Origin", '*');
   //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
   //console.log('res-',res)
@@ -32,7 +29,7 @@ app.use((req, res, next) => {
  
   // console.log('req:::', req.headers)
   // console.log('res:::', res)
-  next()
+  next()*/
 })
 app.use(express.json())
 app.use(
